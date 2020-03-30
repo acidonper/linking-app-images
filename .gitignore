@@ -15,4 +15,4 @@ stub
 package-lock.json
 .history
 .env
-public
+public/*.png
