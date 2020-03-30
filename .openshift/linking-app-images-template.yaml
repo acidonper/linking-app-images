@@ -78,6 +78,7 @@ objects:
       image-user: ${IMAGE_USER}
       image-password: ${IMAGE_PASSWORD}
       image-service: ${SERVICE_NAME}
+      image-service-port: 5001
   - apiVersion: v1
     kind: DeploymentConfig
     metadata:
@@ -141,6 +142,11 @@ objects:
                 valueFrom:
                   secretKeyRef:
                     key: image-service
+                    name: ${SERVICE_NAME}
+              - name: LINKING_APP_IMAGES_SERVICE_PORT
+                valueFrom:
+                  secretKeyRef:
+                    key: image-service-port
                     name: ${SERVICE_NAME}
             resources:
               limits:
