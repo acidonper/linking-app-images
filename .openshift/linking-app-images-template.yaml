@@ -78,7 +78,7 @@ objects:
       image-user: ${IMAGE_USER}
       image-password: ${IMAGE_PASSWORD}
       image-service: ${SERVICE_NAME}
-      image-service-port: 5001
+      image-service-port: "5001"
   - apiVersion: v1
     kind: DeploymentConfig
     metadata:
