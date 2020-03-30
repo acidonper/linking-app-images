@@ -77,6 +77,7 @@ objects:
     stringData:
       image-user: ${IMAGE_USER}
       image-password: ${IMAGE_PASSWORD}
+      image-service: ${SERVICE_NAME}
   - apiVersion: v1
     kind: DeploymentConfig
     metadata:
@@ -135,6 +136,11 @@ objects:
                 valueFrom:
                   secretKeyRef:
                     key: image-password
+                    name: ${SERVICE_NAME}
+              - name: LINKING_APP_IMAGES_SERVICE
+                valueFrom:
+                  secretKeyRef:
+                    key: image-service
                     name: ${SERVICE_NAME}
             resources:
               limits:

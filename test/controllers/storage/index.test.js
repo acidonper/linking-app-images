@@ -4,8 +4,8 @@ const storageLib = require("../../../src/controllers/storage/index");
 describe("Storage controller library test", function() {
     const user = "test01";
     const base64test = "SE9MQUFBQUFBQUFBQUFhCg==";
-    const host = process.env.SERVER_HOST;
-    const port = process.env.SERVER_PORT;
+    const host = process.env.LINKING_APP_IMAGES_SERVICE;
+    const port = process.env.LINKING_APP_IMAGES_SERVICE_PORT;
     const random = Math.floor(Date.now() / 1000);
     const url = `http://${host}:${port}/public/${user}-${random}.png`;
 
