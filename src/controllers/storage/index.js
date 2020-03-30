@@ -16,11 +16,12 @@ module.exports = {
             throw "Error saving photo";
         }
     },
-    delete: async photoId => {
+    delete: async photo => {
         try {
-            const path = process.cwd() + `/public/${photoId}`;
+            const url = new URL(photo);
+            const path = process.cwd() + url.pathname;
             await fs.unlinkSync(path);
-            return `File ${photoId} Deleted`;
+            return `File ${photo} Deleted`;
         } catch (error) {
             throw error;
         }

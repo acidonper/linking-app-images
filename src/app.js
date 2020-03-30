@@ -19,6 +19,8 @@ app.use("/", indexRouter);
 
 app.use("/public", express.static(path.join(process.cwd(), "/public")));
 
+app.use((req, res) => res.status(404).json({ message: "route not found" }));
+
 const SERVER_PORT = process.env.SERVER_PORT || 5001;
 
 app.listen(SERVER_PORT, () => {
