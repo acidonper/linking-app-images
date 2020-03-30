@@ -15,5 +15,14 @@ module.exports = {
         } catch (error) {
             throw "Error saving photo";
         }
+    },
+    delete: async photoId => {
+        try {
+            const path = process.cwd() + `/public/${photoId}`;
+            await fs.unlinkSync(path);
+            return `File ${photoId} Deleted`;
+        } catch (error) {
+            throw error;
+        }
     }
 };
