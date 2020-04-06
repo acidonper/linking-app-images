@@ -11,7 +11,7 @@
 usage() {
 echo "Usage: $0 <project_name> <git_user> <git_password> <images_user> <images_password>"
 echo "Example:"
-echo "  ./spotify_full_template.sh linking-app admin h3ll0123?"
+echo "  ./linking-app-images-template-deploy.sh <project_name> <git_user> <git_password> <images_user> <images_password>"
 exit 1
 }
 

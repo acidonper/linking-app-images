@@ -1,4 +1,4 @@
-# Spotify App in OpenShift
+# Linking App Images in OpenShift
 
 This procedure tries to give an overview of the procedure involved in deploy Linking-App-Images in an OpenShift environment, in particular OpenShift 4.2 environment.
 
@@ -37,7 +37,7 @@ $ sh linking-app-images-template-deploy.sh projectexample01 <git_user> <git_pass
 
 ## Test
 
-Once the procedure execution is finished, it is possible to test Spotify App following next steps:
+Once the procedure execution is finished, it is possible to test Linking App Images  following next steps:
 
 -   Manually testing pods deployment and other objects creation
 
