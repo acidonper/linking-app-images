@@ -12,12 +12,12 @@ Plain user/password login is the main authentication provider in this project. T
 
 ## Required Variables
 
-| Variable                        | Objective                               |
-| ------------------------------- | --------------------------------------- |
-| LINKING_APP_IMAGES_SERVICE      | Express Server Listen Service Name      |
-| LINKING_APP_IMAGES_SERVICE_PORT | Express Server Listen Port              |
-| LINKING_APP_IMAGES_USER         | Admin username allowed to perform login |
-| LINKING_APP_IMAGES_PASS         | Admin user password                     |
+| Variable                              | Objective                               |
+| ------------------------------------- | --------------------------------------- |
+| LINKING_APP_IMAGES_SERVICE            | Public Service URL                      |
+| LINKING_APP_IMAGES_SERVICE_LOCAL_PORT | Express Server Listen Port              |
+| LINKING_APP_IMAGES_USER               | Admin username allowed to perform login |
+| LINKING_APP_IMAGES_PASS               | Admin user password                     |
 
 ## Controllers
 
