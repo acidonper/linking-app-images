@@ -9,9 +9,9 @@
 #
 
 usage() {
-echo "Usage: $0 <project_name> <git_user> <git_password> <images_user> <images_password>"
+echo "Usage: $0 <project_name> <git_user> <git_password> <images_user> <images_password> <openshift_domain>"
 echo "Example:"
-echo "  ./linking-app-images-template-deploy.sh <project_name> <git_user> <git_password> <images_user> <images_password> <openshift_domain>"
+echo "  ./linking-app-images-template-deploy.sh linking-app linkingappspain pass123 adminimages pass123 example.com"
 exit 1
 }
 
