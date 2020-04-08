@@ -30,7 +30,7 @@ _Controller_ folder is dedicated to implement app logic required for it to funct
 
 ## Routes
 
-There are implemented some express routes in order to provide images management service. The following table provides an routes overview regard to their path and main objetive:
+There are implemented some express routes in order to provide images management service. The following table provides a routes overview regard to their path and main objetive:
 
 | Path    | Method | Req                                               | Res                     | Objective                           |
 | ------- | ------ | ------------------------------------------------- | ----------------------- | ----------------------------------- |

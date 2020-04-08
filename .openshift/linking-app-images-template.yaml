@@ -59,16 +59,60 @@ objects:
       namespace: ${NAMESPACE}
     spec:
       ports:
-      - name: ${SERVICE_NAME}-http
-        port: 5001
-        protocol: TCP
-        targetPort: 5001
+        - name: ${SERVICE_NAME}-http
+          port: 5001
+          protocol: TCP
+          targetPort: 5001
       selector:
         deploymentconfig: ${SERVICE_NAME}
       sessionAffinity: None
       type: ClusterIP
     status:
       loadBalancer: {}
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: ${SERVICE_NAME}
+      namespace: ${NAMESPACE}
+    spec:
+      to:
+        kind: Service
+        name: ${SERVICE_NAME}
+      port:
+        targetPort: ${SERVICE_NAME}-http
+      tls:
+        termination: edge
+        insecureEdgeTerminationPolicy: Redirect
+        wildcardPolicy: None
+    status: {}
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: ${SERVICE_NAME}
+      namespace: ${NAMESPACE}
+    spec:
+      to:
+        kind: Service
+        name: ${SERVICE_NAME}
+      port:
+        targetPort: ${SERVICE_NAME}-http
+      tls:
+        termination: edge
+        insecureEdgeTerminationPolicy: Redirect
+        wildcardPolicy: None
+    status: {}
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: ${SERVICE_NAME}-http
+      namespace: ${NAMESPACE}
+    spec:
+      to:
+        kind: Service
+        name: ${SERVICE_NAME}
+      port:
+        targetPort: ${SERVICE_NAME}-http
+    status: {}
   - apiVersion: v1
     kind: Secret
     metadata:
@@ -103,58 +147,58 @@ objects:
             deploymentconfig: ${SERVICE_NAME}
         spec:
           containers:
-          - name: ${SERVICE_NAME}
-            image: image-registry.openshift-image-registry.svc:5000/${NAMESPACE}/${SERVICE_NAME}
-            imagePullPolicy: Always
-            livenessProbe:
-              tcpSocket:
-                port: 5001
-              initialDelaySeconds: 15
-              timeoutSeconds: 1
-              periodSeconds: 10
-              successThreshold: 1
-              failureThreshold: 3
-            readinessProbe:
-              httpGet:
-                path: /health
-                port: 5001
-                scheme: HTTP
-              initialDelaySeconds: 15
-              timeoutSeconds: 10
-              periodSeconds: 30
-              successThreshold: 1
-              failureThreshold: 1
-            ports:
-              - containerPort: 5001
-                protocol: TCP
-            env:
-              - name: LINKING_APP_IMAGES_USER
-                valueFrom:
-                  secretKeyRef:
-                    key: image-user
-                    name: ${SERVICE_NAME}
-              - name: LINKING_APP_IMAGES_PASS
-                valueFrom:
-                  secretKeyRef:
-                    key: image-password
-                    name: ${SERVICE_NAME}
-              - name: LINKING_APP_IMAGES_SERVICE
-                valueFrom:
-                  secretKeyRef:
-                    key: image-service
-                    name: ${SERVICE_NAME}
-              - name: LINKING_APP_IMAGES_SERVICE_PORT
-                valueFrom:
-                  secretKeyRef:
-                    key: image-service-port
-                    name: ${SERVICE_NAME}
-            resources:
-              limits:
-                memory: 1Gi
-            securityContext:
-              capabilities: {}
-              privileged: false
-            terminationMessagePath: /dev/termination-log
+            - name: ${SERVICE_NAME}
+              image: image-registry.openshift-image-registry.svc:5000/${NAMESPACE}/${SERVICE_NAME}
+              imagePullPolicy: Always
+              livenessProbe:
+                tcpSocket:
+                  port: 5001
+                initialDelaySeconds: 15
+                timeoutSeconds: 1
+                periodSeconds: 10
+                successThreshold: 1
+                failureThreshold: 3
+              readinessProbe:
+                httpGet:
+                  path: /health
+                  port: 5001
+                  scheme: HTTP
+                initialDelaySeconds: 15
+                timeoutSeconds: 10
+                periodSeconds: 30
+                successThreshold: 1
+                failureThreshold: 1
+              ports:
+                - containerPort: 5001
+                  protocol: TCP
+              env:
+                - name: LINKING_APP_IMAGES_USER
+                  valueFrom:
+                    secretKeyRef:
+                      key: image-user
+                      name: ${SERVICE_NAME}
+                - name: LINKING_APP_IMAGES_PASS
+                  valueFrom:
+                    secretKeyRef:
+                      key: image-password
+                      name: ${SERVICE_NAME}
+                - name: LINKING_APP_IMAGES_SERVICE
+                  valueFrom:
+                    secretKeyRef:
+                      key: image-service
+                      name: ${SERVICE_NAME}
+                - name: LINKING_APP_IMAGES_SERVICE_PORT
+                  valueFrom:
+                    secretKeyRef:
+                      key: image-service-port
+                      name: ${SERVICE_NAME}
+              resources:
+                limits:
+                  memory: 1Gi
+              securityContext:
+                capabilities: {}
+                privileged: false
+              terminationMessagePath: /dev/termination-log
           dnsPolicy: ClusterFirst
           restartPolicy: Always
           securityContext: {}
@@ -163,7 +207,6 @@ objects:
         - type: ConfigChange
     status: {}
 parameters:
-
   - description: The OpenShift Namespace where the ImageStream resides.
     displayName: Namespace
     name: NAMESPACE

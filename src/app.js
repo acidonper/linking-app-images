@@ -2,15 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const indexRouter = require("./routes/index");
-const cors = require("cors");
 const path = require("path");
-
-var corsOptions = {
-    origin: "http://localhost:3000",
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-
-app.use(cors(corsOptions));
 
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ limit: "5mb", extended: true }));
@@ -24,5 +16,5 @@ app.use((req, res) => res.status(404).json({ message: "route not found" }));
 const SERVER_PORT = process.env.LINKING_APP_IMAGES_SERVICE_PORT || 5001;
 
 app.listen(SERVER_PORT, () => {
-    console.log(`Server listening on port ${SERVER_PORT} `);
+  console.log(`Server listening on port ${SERVER_PORT} `);
 });
