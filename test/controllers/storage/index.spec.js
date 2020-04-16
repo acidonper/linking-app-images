@@ -4,6 +4,7 @@ const storageLib = require("../../../src/controllers/storage/index");
 describe("Storage controller library test", function () {
   const user = "test01";
   const base64test = "SE9MQUFBQUFBQUFBQUFhCg==";
+  process.env.LINKING_APP_IMAGES_SERVICE = "http://localhost";
   const service = process.env.LINKING_APP_IMAGES_SERVICE;
   const random = Math.floor(Date.now() / 1000);
   const url = `${service}/public/${user}-${random}.png`;
