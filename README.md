@@ -1,6 +1,6 @@
 # Linking App Images Repository
 
-_Linking App Images_ is a NodeJS project which provides an API to allow _Linking App Front_ users manage their photographies. Regarding technologies involved, the following list offer an application overview:
+_Linking App Images_ is a NodeJS project which provides an API in order to allow _Linking App Front_ users manage their photographs. Regarding technologies involved, the following list offer an application overview:
 
 - NodeJS
 - Javascript
