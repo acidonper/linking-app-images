@@ -43,7 +43,7 @@ oc process -f linking-app-images-template.yaml  \
 oc start-build bc/$SERVICE_NAME
 
 # Wait for previous process
-sleep 900
+#sleep 900
 
 # Start deployment process
-oc rollout latest $SERVICE_NAME -n $PROJECT_NAME
+#oc rollout latest $SERVICE_NAME -n $PROJECT_NAME
